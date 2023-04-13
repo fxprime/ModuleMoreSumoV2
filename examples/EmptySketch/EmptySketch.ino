@@ -10,7 +10,7 @@
  */
 
 #include <Arduino.h>
-#include "ModuleMoreSumoV2.h"
+#include "ModuleMore_Sumo_V2.h"
  
 enemy_detector  _enemy(SENSOR_VL530X);    // Define the enemy detector using the VL530X sensor called _enemy
 line_detector   _line;                    // Define the line detector called _line
