@@ -1,0 +1,163 @@
+#######################################
+# Syntax Coloring Map for ModuleMoreSumoV2
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+enemy_detector	KEYWORD1
+line_detector	KEYWORD1
+driver	KEYWORD1
+robot_ui	KEYWORD1
+statemachine	KEYWORD1
+
+ui_state_t	KEYWORD1
+ui_mode_t	KEYWORD1
+ui_raw_button_t	KEYWORD1
+timer_t	KEYWORD1
+line_detection	KEYWORD1
+enemy_detection	KEYWORD1
+dist_ranges	KEYWORD1
+drive_speed_t	KEYWORD1
+drive_t	KEYWORD1
+duty_cycles_t	KEYWORD1
+detection_history_t	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+init	KEYWORD2 
+setDetectThreshold	KEYWORD2
+setInvalidRange	KEYWORD2
+setRangeClose	KEYWORD2
+setRangeMid	KEYWORD2
+setRangeFar	KEYWORD2
+setDistanceSensorFiltered	KEYWORD2
+setThreshold	KEYWORD2
+setMaxSpeed	KEYWORD2
+always_stop	KEYWORD2
+setCountdown	KEYWORD2
+update	KEYWORD2
+isRobotStartAuto	KEYWORD2
+isRobotStartManual	KEYWORD2
+isRobotStop	KEYWORD2
+countingDown	KEYWORD2
+getRawButton	KEYWORD2
+getRawMode	KEYWORD2
+getModeStr	KEYWORD2
+mode_str	KEYWORD2
+updateState	KEYWORD2
+updateMode	KEYWORD2
+updateButton	KEYWORD2
+getMode	KEYWORD2
+timer_start	KEYWORD2
+timer_ms_elapsed	KEYWORD2
+setThreshold	KEYWORD2
+str	KEYWORD2
+get_detection	KEYWORD2
+isLineDetected	KEYWORD2
+isLineDetectedFront	KEYWORD2
+isLineDetectedFrontLeft	KEYWORD2
+isLineDetectedFrontRight	KEYWORD2
+pos_str	KEYWORD2
+range_str	KEYWORD2
+detected	KEYWORD2
+at_left	KEYWORD2
+at_right	KEYWORD2
+at_front	KEYWORD2
+at_front_left	KEYWORD2
+at_front_right	KEYWORD2
+enemy_close	KEYWORD2
+enemy_mid	KEYWORD2
+enemy_far	KEYWORD2
+is_at_left	KEYWORD2
+is_at_right	KEYWORD2
+is_at_front	KEYWORD2
+set	KEYWORD2
+drive	KEYWORD2
+wait	KEYWORD2
+stopForMs	KEYWORD2
+forward	KEYWORD2
+forwardForMs	KEYWORD2
+reverse	KEYWORD2
+reverseForMs	KEYWORD2
+rotateLeft	KEYWORD2
+rotateLeftForMs	KEYWORD2
+rotateRight	KEYWORD2
+rotateRightForMs	KEYWORD2
+arcTurnSharpLeft	KEYWORD2
+arcTurnSharpLeftForMs	KEYWORD2
+arcTurnSharpRight	KEYWORD2
+arcTurnSharpRightForMs	KEYWORD2
+arcTurnMidLeft	KEYWORD2
+arcTurnMidLeftForMs	KEYWORD2
+arcTurnMidRight	KEYWORD2
+arcTurnMidRightForMs	KEYWORD2
+arcTurnWideLeft	KEYWORD2
+arcTurnWideLeftForMs	KEYWORD2
+arcTurnWideRight	KEYWORD2
+arcTurnWideRightForMs	KEYWORD2
+detection_history_save	KEYWORD2
+detection_history_last_enemy_direction	KEYWORD2 
+ReverseArcTurnSharpLeft	KEYWORD2
+ReverseArcTurnSharpLeftForMs	KEYWORD2
+ReverseArcTurnSharpRight	KEYWORD2
+ReverseArcTurnSharpRightForMs	KEYWORD2
+ReverseArcTurnMidLeft	KEYWORD2
+ReverseArcTurnMidLeftForMs	KEYWORD2
+ReverseArcTurnMidRight	KEYWORD2
+ReverseArcTurnMidRightForMs	KEYWORD2
+ReverseArcTurnWideLeft	KEYWORD2
+ReverseArcTurnWideLeftForMs	KEYWORD2
+ReverseArcTurnWideRight	KEYWORD2
+ReverseArcTurnWideRightForMs	KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+
+DIST_LEFT	LITERAL1
+DIST_FRONT	LITERAL1
+DIST_RIGHT	LITERAL1
+IR_LEFT	LITERAL1
+IR_RIGHT	LITERAL1
+LINE_NOTFOUND	LITERAL1
+LINE_FRONT	LITERAL1
+LINE_FRONT_LEFT	LITERAL1
+LINE_FRONT_RIGHT	LITERAL1
+ENEMY_NOTFOUND	LITERAL1
+ENEMY_FRONT_LEFT	LITERAL1
+ENEMY_POS_FRONT_AND_FRONT_LEFT	LITERAL1
+ENEMY_FRONT	LITERAL1
+ENEMY_FRONT_RIGHT	LITERAL1
+ENEMY_POS_FRONT_AND_FRONT_RIGHT	LITERAL1
+SPEED_SLOW	LITERAL1
+SPEED_MEDIUM	LITERAL1
+SPEED_FAST	LITERAL1
+SPEED_FASTEST	LITERAL1
+DRIVE_FORWARD	LITERAL1
+DRIVE_REVERSE	LITERAL1
+DRIVE_ROTATE_LEFT	LITERAL1
+DRIVE_ROTATE_RIGHT	LITERAL1
+DRIVE_ARCTURN_SHARP_LEFT	LITERAL1
+DRIVE_ARCTURN_SHARP_RIGHT	LITERAL1
+DRIVE_ARCTURN_MID_LEFT	LITERAL1
+DRIVE_ARCTURN_MID_RIGHT	LITERAL1
+DRIVE_ARCTURN_WIDE_LEFT	LITERAL1
+DRIVE_ARCTURN_WIDE_RIGHT	LITERAL1
+SENSOR_VL530X	LITERAL1
+SENSOR_2Y0A21	LITERAL1
+MODE_0	LITERAL1
+MODE_1	LITERAL1
+MODE_2	LITERAL1
+MODE_3	LITERAL1
+MODE_4	LITERAL1
+MODE_5	LITERAL1
+MODE_6	LITERAL1
+MODE_7	LITERAL1
+ENEMY_RANGE_NONE	LITERAL1
+ENEMY_RANGE_CLOSE	LITERAL1
+ENEMY_RANGE_MID	LITERAL1
+ENEMY_RANGE_FAR	LITERAL1
