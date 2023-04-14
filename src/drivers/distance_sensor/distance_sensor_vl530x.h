@@ -5,7 +5,7 @@
 
 #include <Wire.h>
 #include "distance_sensor.h"
-#include "../../externals/VL53L0X/VL53L0X.h"
+#include <VL53L0X.h>
 #include "../pinout.h"
 
 namespace mdm_dist
