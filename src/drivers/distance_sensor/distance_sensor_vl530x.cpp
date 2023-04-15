@@ -19,7 +19,7 @@ namespace mdm_dist {
 
     distance_sensor_vl530x::~distance_sensor_vl530x()
     {
-
+        delete[] _medianFilter;
     }
 
 
@@ -59,6 +59,10 @@ namespace mdm_dist {
         
         for(int i=0;i<IDX_COUNT;i++) 
             _sensor[i].startContinuous(); 
+
+
+        for(int i=0;i<IDX_COUNT;i++) 
+            _medianFilter[i] = new MedianFilter(FILTSAMPLES);
         
     }
 
@@ -92,10 +96,7 @@ namespace mdm_dist {
             if(success) { 
                 if(_filtered) {
                     for(int i=0;i<IDX_COUNT;i++) 
-                        _dist_mm_filt[i] = 0.8*_dist_mm_filt[i] + 0.2*_dist_mm[i]; 
-                    
-                    for(int i=0;i<IDX_COUNT;i++)
-                        _dist_mm[i] = (uint16_t)_dist_mm_filt[i]; 
+                        _dist_mm[i] = _medianFilter[i]->getFilteredValue(_dist_mm[i]); 
                 }
 
                 memcpy(ranges, _dist_mm, IDX_COUNT*sizeof(_dist_mm[0])); 
