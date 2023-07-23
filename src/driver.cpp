@@ -132,10 +132,10 @@ namespace mdmbot
         set(drive, false, drive_speed);
     }
 
-    void driver::drive(drive_t drive, int8_t left, int8_t right) {
+    void driver::drive(int8_t left_dutycycle, int8_t right_dutycycle) {
         if(_always_stop) { stop(); return;  }
-        _motor_driver.motor_set_duty_cycle(motor_driver::MOTORS_LEFT, left);
-        _motor_driver.motor_set_duty_cycle(motor_driver::MOTORS_RIGHT, right);
+        _motor_driver.motor_set_duty_cycle(motor_driver::MOTORS_LEFT, left_dutycycle);
+        _motor_driver.motor_set_duty_cycle(motor_driver::MOTORS_RIGHT, right_dutycycle);
     }
  
     void driver::forward(drive_speed_t drive_speed)

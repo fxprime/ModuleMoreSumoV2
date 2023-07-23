@@ -67,7 +67,7 @@ namespace mdmbot
         void drive(drive_t drive, bool reverse);
         void drive(drive_t drive);
         void drive(drive_t drive, drive_speed_t drive_speed);
-        void drive(drive_t drive, int8_t left, int8_t right);
+        void drive(int8_t left_dutycycle, int8_t right_dutycycle);
 
 
         /**
