@@ -53,7 +53,7 @@ void loop()
   /**
    * @brief If the robot is in auto mode, check if the line is detected, if the enemy is detected then attack. Or if nothing is detected then search for the enemy by the pattern wrote in the function searchForEnemy()
    */
-  if (_robot.isRobotStartAuto()) {      
+  if (_robot.isRobotStartAuto()&& !_robot.isBatteryLow()) {      
     if (lineDetected()) {
       avoidLine();
     } else if (enemyDetected()) {
