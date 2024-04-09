@@ -17,6 +17,8 @@
         GPIO_MOTORS_LEFT_CC_2        = 10,
         GPIO_MOTORS_LEFT_PWM         = 6,
 
+        GPIO_RC_PPM                  = 4,
+
         GPIO_MOTORS_RIGHT_PWM        = 5,
         GPIO_MOTORS_RIGHT_CC_1       = 15,
         GPIO_MOTORS_RIGHT_CC_2       = 14,
@@ -52,6 +54,8 @@
         GPIO_MOTORS_LEFT_CC_1        = 3,
         GPIO_MOTORS_LEFT_CC_2        = 2,
         GPIO_MOTORS_LEFT_PWM         = 5,
+
+        GPIO_RC_PPM                  = 4,
 
         GPIO_MOTORS_RIGHT_PWM        = 6,
         GPIO_MOTORS_RIGHT_CC_1       = 7,

@@ -53,16 +53,14 @@ using namespace mdm_infrared_sensor;
 #define SENSOR_VL530X                   enemy_detector::SENSOR_TYPE_VL530X
 #define SENSOR_2Y0A21                   enemy_detector::SENSOR_TYPE_2Y0A21
 
-#define MODE_0                          robot_ui::MODE_0
-#define MODE_1                          robot_ui::MODE_1
-#define MODE_2                          robot_ui::MODE_2
-#define MODE_3                          robot_ui::MODE_3
-#define MODE_4                          robot_ui::MODE_4
-#define MODE_5                          robot_ui::MODE_5
-#define MODE_6                          robot_ui::MODE_6
-#define MODE_7                          robot_ui::MODE_7
-
- 
+#define MODE_0                          robot_ui::mode_0
+#define MODE_1                          robot_ui::mode_1
+#define MODE_2                          robot_ui::mode_2
+#define MODE_3                          robot_ui::mode_3
+#define MODE_4                          robot_ui::mode_4
+#define MODE_5                          robot_ui::mode_5
+#define MODE_6                          robot_ui::mode_6
+#define MODE_7                          robot_ui::mode_7  
 
 // typedef distance_sensor::dist_idx_t DIDX;
 
