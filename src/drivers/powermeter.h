@@ -3,7 +3,8 @@
 #define POWERMETER
 
 #include <Arduino.h>
-#include <INA219_WE.h>
+// #include <INA219_WE.h>
+#include <INA219.h>
 #include "pinout.h"
  
 class PowerMeter
@@ -28,12 +29,23 @@ public:
             Serial.print("Overflow: "); Serial.println(is_overflow);
         }
 
-        inline void update(INA219_WE &meter) {
-            m_current = m_current*0.99 + 0.01*meter.getCurrent_mA();
-            float loadV = meter.getBusVoltage_V() + (meter.getShuntVoltage_mV() *0.001);
+        // inline void update(INA219_WE &meter) {
+        //     m_current = m_current*0.99 + 0.01*meter.getCurrent_mA();
+        //     float loadV = meter.getBusVoltage_V() + (meter.getShuntVoltage_mV() *0.001);
+        //     m_voltage = m_voltage*0.99 + 0.01*loadV;
+        //     m_power = m_power*0.99 + 0.01*meter.getBusPower();
+        //     is_overflow = meter.getOverflow();
+        // }
+
+        inline void update(INA219 &meter) 
+        {
+            m_current = m_current*0.99 + 0.01*meter.shuntCurrent();
+            float loadV = meter.busVoltage() + (meter.shuntVoltage());
             m_voltage = m_voltage*0.99 + 0.01*loadV;
-            m_power = m_power*0.99 + 0.01*meter.getBusPower();
-            is_overflow = meter.getOverflow();
+            m_power = m_power*0.99 + 0.01*meter.busPower();
+
+            // Serial.print("Current: "); Serial.print(m_current); Serial.print(" mA\t");
+            // Serial.print("Voltage: "); Serial.print(m_voltage); Serial.print(" V\n");
         }
 
         inline bool is_critical_low_voltage() {
@@ -50,10 +62,11 @@ public:
     ~PowerMeter() {};
 
     void init() {
-        if(!m_ina219.init()) {
-            Serial.println("INA219 chip not found, ignored.");
-            return;
-        }
+        // if(!m_ina219.init()) {
+        //     Serial.println("INA219 chip not found, ignored.");
+        //     return;
+        // }
+        m_ina219.begin();
         m_inited = true;
         m_meter.m_voltage = 7.8;
         m_meter.m_current = 0;
@@ -63,7 +76,7 @@ public:
     }
     inline void update() {
         if(!m_inited) return;
-        if(!m_ina219.getConversionReady()) return;
+        // if(!m_ina219.getConversionReady()) return;
         m_meter.update(m_ina219);
         // m_meter.print(); 
     }
@@ -73,14 +86,20 @@ public:
     }
     inline void print() { m_meter.print(); }
     inline bool is_critical_low_voltage() { return m_meter.is_critical_low_voltage(); }
-    inline uint8_t getBatteryPercentage() { return (uint8_t)( 100*(m_meter.m_voltage - 7.0)/(8.4-7.0) ); }
+    inline uint8_t getBatteryPercentage() { 
+        if(m_meter.m_voltage<7.0) 
+            return 0;
+        else
+            return (uint8_t)( 100*(m_meter.m_voltage - 7.0)/(8.4-7.0) ); 
+    }
     inline float getBatteryVoltage() { return m_meter.m_voltage; }
     inline int16_t getBatteryCurrent() { return (int16_t)m_meter.m_current; }
 
 
 private: 
     const uint8_t INA219_ADDRESS = 0x40;
-    INA219_WE       m_ina219 = INA219_WE(INA219_ADDRESS );
+    // INA219_WE       m_ina219 = INA219_WE(INA219_ADDRESS ); 
+    INA219 m_ina219;
     meter_t         m_meter;
     bool m_inited = false;
 

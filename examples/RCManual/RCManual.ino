@@ -26,7 +26,7 @@ void loop()
 {
     _robot.update();                        //Update the robot UI module
 
-    if (_robot.isRobotStartAuto() && !_robot.isBatteryLow()) {
+    if (_robot.isRobotStartAuto() /*&& !_robot.isBatteryLow()*/) {
  
 
       // Map the PPM signal to the speed and steer
@@ -39,7 +39,17 @@ void loop()
         float scale_factor = 100 / sum_normalized;
         speed_pct *= scale_factor;
         steer_pct *= scale_factor;
-      } 
+      }
+
+      // Serial.print(_robot.getBatteryPCT());
+      // Serial.print("\t");
+      // Serial.print(_robot.getBatteryVoltage());
+      // Serial.print("\t");
+      // Serial.print(_robot.getBatteryCurrent());
+      // Serial.print("\t");
+      // Serial.print(speed_pct);
+      // Serial.print("\t");
+      // Serial.println(steer_pct);
 
       // Drive the robot
       if(fabs(speed_pct) > 5 || fabs(steer_pct) > 5) { 
@@ -53,6 +63,7 @@ void loop()
     }else{
       _driver.stop();
       
-    }  
+    } 
+    // _meter.print();
     delay(1);
 } 

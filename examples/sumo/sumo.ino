@@ -31,13 +31,15 @@ void setup()
   _enemy.init();                          // Initialize the enemy detector
   _enemy.setDetectThreshold(600);         // Set the threshold for the enemy detector 
   _enemy.setInvalidRange(1000);           // Set the invalid range for the enemy detector
-  _enemy.setRangeFar(300);                // Set the range for the enemy detector
-
+  _enemy.setRangeFar(350);                // Set the range for the enemy detector
+  _enemy.setRangeMid(250);                // Set the range for the enemy detector
+  _enemy.setRangeClose(150);              // Set the range for the enemy detector
+ 
   _line.init();                           // Initialize the line detector
   _line.setThreshold(300);                // Set the threshold for the line detector
 
   _driver.init();                         // Initialize the driver
-  _driver.setMaxSpeed(150);               // Set the maximum speed for the driver
+  _driver.setMaxSpeed(255);               // Set the maximum speed for the driver
   _driver.always_stop(false);             // Set this to true to alway stop robot for debugging purpose
 
   _robot.init();                          // Initialize the robot UI
@@ -53,7 +55,7 @@ void loop()
   /**
    * @brief If the robot is in auto mode, check if the line is detected, if the enemy is detected then attack. Or if nothing is detected then search for the enemy by the pattern wrote in the function searchForEnemy()
    */
-  if (_robot.isRobotStartAuto()&& !_robot.isBatteryLow()) {      
+  if (_robot.isRobotStartAuto() /*&& !_robot.isBatteryLow()*/) {      
     if (lineDetected()) {
       avoidLine();
     } else if (enemyDetected()) {
@@ -89,8 +91,12 @@ bool lineDetected() {
  */
 void avoidLine() {
   // Serial.println("Avoiding Line");
-  _driver.reverseForMs(400);
-  _driver.rotateRightForMs(400);
+  _driver.reverseForMs(200);
+  int random2 = random(0, 2);
+  if(random2 == 0)
+    _driver.rotateLeftForMs(300);
+  else
+    _driver.rotateRightForMs(300); 
 }
 
 /**
@@ -113,38 +119,38 @@ void attackEnemy() {
     if(_enemy.enemy_close())
       _driver.forward(SPEED_FASTEST); // Fastest attack enemy
     else if(_enemy.enemy_mid())
-      _driver.forward(SPEED_FAST);    // Fast to catch up enemy
+      _driver.forward(SPEED_FASTEST);    // Fast to catch up enemy
     else if(_enemy.enemy_far())
-      _driver.forward(SPEED_MEDIUM);  // Go easy to check movement of enemy
+      _driver.forward(SPEED_FASTEST);  // Go easy to check movement of enemy
   } 
   
   
   else if (_enemy.at_front_left()) {
     if(_enemy.enemy_far())
-      _driver.arcTurnWideLeft(SPEED_MEDIUM);
+      _driver.arcTurnWideLeft(SPEED_FASTEST);
     else if(_enemy.enemy_mid() || _enemy.enemy_close())
-      _driver.arcTurnMidLeft(SPEED_FAST);
+      _driver.arcTurnMidLeft(SPEED_FASTEST);
   } 
   
   else if (_enemy.at_front_right()) {
     if(_enemy.enemy_far())
-      _driver.arcTurnWideRight(SPEED_MEDIUM);
+      _driver.arcTurnWideRight(SPEED_FASTEST);
     else if(_enemy.enemy_mid() || _enemy.enemy_close())
-      _driver.arcTurnMidRight(SPEED_FAST);
+      _driver.arcTurnMidRight(SPEED_FASTEST);
   } 
   
   else if (_enemy.at_left()) {
     if(_enemy.enemy_close())
-      _driver.arcTurnSharpLeft(SPEED_FAST);
+      _driver.arcTurnSharpLeft(SPEED_FASTEST);
     else if(_enemy.enemy_mid() || _enemy.enemy_far())
-      _driver.arcTurnMidLeft(SPEED_FAST); 
+      _driver.arcTurnMidLeft(SPEED_FASTEST); 
   } 
   
   else if (_enemy.at_right()) {
     if(_enemy.enemy_close())
-      _driver.arcTurnSharpRight(SPEED_FAST);
+      _driver.arcTurnSharpRight(SPEED_FASTEST);
     else if(_enemy.enemy_mid() || _enemy.enemy_far())
-      _driver.arcTurnMidRight(SPEED_FAST); 
+      _driver.arcTurnMidRight(SPEED_FASTEST); 
   } 
 }
 
@@ -153,5 +159,15 @@ void attackEnemy() {
  * 
  */
 void searchForEnemy() {
-    _driver.arcTurnMidLeft(SPEED_MEDIUM);
+  static unsigned long lastTime = 0;
+  static int random2 = random(0, 500);
+  if(millis() - lastTime > 1000) {
+    random2 = random(0, 500);
+    lastTime = millis();  
+  }
+  
+  if(random2 < 100)
+    _driver.arcTurnWideRight(SPEED_FAST);
+  else
+    _driver.arcTurnWideLeft(SPEED_FAST); 
 }
